@@ -1,0 +1,119 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>fabric JS</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src='libs/fabric.js'></script>
+</head>
+<body>
+	<div class='print'>
+		<div id='btnOne' class='print__btn print__btnOne'>1</div>
+		<div id='btnTwo' class='print__btn print__btnTwo'>2</div>
+		<div id='btnThree' class='print__btn print__btnThree'>3</div>
+		<div id='btnFour' class='print__btn print__btnFour'>4</div>
+		<div id='btnFive' class='print__btn print__btnFive'>5</div>
+
+		<div id='fieldForBtnOne' class='print__field'>
+			<h4>CURVE TEXT</h4>
+			<!--<canvas id='field-first-canvas' width='' height=''></canvas>-->
+			<div id='field-first-output' class='print__field-output'></div>
+			<input id='field-first-input' class='print__field-input' value='text here'>
+			<input id='field-submit-btn' class='print__field-submit-btn' type='submit' value='add'>
+			<br>
+			<br>
+			<input id='field-reverse-checkbox' type='checkbox'>Reverse
+			<input id='field-inside-checkbox' type='checkbox'>Inside 
+			<br>
+			<br>
+			Radius:<input id='field-range-radius' type='range' min='130' max='190'>
+			<br>
+			<br>
+			Spasing:<input id='field-range-spasing' type='range' min='0' max='5'>
+			<br>
+			<br>
+			Font size:<input id='field-range-fontSize' type='range' min='8' max='20'>
+		</div>
+
+		<div id='fieldForBtnTwo' class='print__field'>
+			<h4>TEXT ON PATH</h4>
+			<div id='fieldForBtnTwoSvg' class='print__field-svg-wrapp'>
+				<svg viewBox = "0 0 300 200" version = "1.1">
+				    <defs>
+				        <!-- Start at (10,90) end at (200,70) use control point (100,15) -->
+				        <!-- Continue from (200,70) end at (400,30) use control point (340,140) -->
+				        <path id = "field-two-line" d = "M 29,81 Q 100,21 84,82 Q 230,182 263,50"/>
+				    </defs>
+				    <g fill = "navy">
+				        <text >
+				            <textPath id='fieldForBtnTwo__Text' xlink:href="#field-two-line" font-size="20" letter-spacing='30px'>Wavy text is the gimmick for many years to come</textPath>
+				        </text>
+				        <use x = "0" y = "0" xlink:href = "#field-two-line" stroke = "black" fill = "none"/>
+				    </g>
+				</svg>
+				<div id='field-two-controlPoint1' class='print__field-controlPoint1'></div>
+				<div id='field-two-controlPoint2' class='print__field-controlPoint2'></div>
+				<div id='field-two-control1' class='print__field-control1'></div>
+				<div id='field-two-control2' class='print__field-control2'></div>
+				<div id='field-two-control3' class='print__field-control3'></div>
+			</div>
+
+			<input id='fieldTwo__input' class='print__field-input-two' value='text here'>
+			<input id='fieldTwo__submitBtn' class='print__field-submit-btn' type='submit' value='add'>
+			Font size:<input id='fieldTwo__rangeFontSize' type='range' min='8' max='20'>
+			Kerning:<input id='fieldTwo__rangeKerning' type='range' min='0' max='10'>
+			line height:<input id='fieldTwo__rangeLineHeight' type='range' min='1' max='50'>
+		</div>
+
+		<div id='fieldForBtnThree' class='print__field'>
+			<h4>TEXTFX</h4>
+			<div id='fieldThree__output' class='print__field-output-three'></div>
+			<input id='fieldThree__input' class='print__field-input-three' value='xyz'>
+			<input id='fieldThree__submitBtn' class='print__field-submit-btn' type='submit' value='add'>
+			<p>Select Style :</p>
+			<div id='fieldThree__text11' class='print__textfx'> 
+				<img src="img/11_x.svg">
+				<img src="img/11_y.svg">
+				<img src="img/11_z.svg">
+			</div>
+			<div id='fieldThree__text12' class='print__textfx'> 
+				<img src="img/12_x.svg">
+				<img src="img/12_y.svg">
+				<img src="img/12_z.svg">
+			</div>
+			<div id='fieldThree__text13' class='print__textfx'> 
+				<img src="img/13_x.svg">
+				<img src="img/13_y.svg">
+				<img src="img/13_z.svg">
+			</div>
+		</div>
+		<div id='fieldForBtnFour' class='print__field'>
+			<h4>TEXT ART</h4>
+		</div>
+		<div id='fieldForBtnFive' class='print__field'>
+			<h4>WORD CLOWD</h4>
+			<svg id='fieldForBtnFive__svgShown' viewBox = "0 0 300 200" version = "1.1">
+    			<path fill='none' stroke="#ED6E46" stroke-width="1" d="m152.5,35c-246,-107 -136.43765,111.61102 -1.53036,140.88232c119.19522,-23.72809 234.53036,-256.88232 1.53036,-140.88232z" />
+    			<text id='fieldForBtnFive__svgText1' symb='8' x="20" y="25"></text>
+    			<text id='fieldForBtnFive__svgText2' symb='9' x="200" y="25"></text>
+    			<text id='fieldForBtnFive__svgText3' symb='33' x="15" y="45">loremipsumdolorsitamet,consect</text>
+    			<text id='fieldForBtnFive__svgText4' symb='31' x="20" y="65">loremipsumdolorsitamet,conse</text>
+    			<text id='fieldForBtnFive__svgText5' symb='29' x="25" y="85">loremipsumdolorsitamet,con</text>
+    			<text id='fieldForBtnFive__svgText6' symb='26' x="40" y="105">loremipsumdolorsitamet,</text>
+    			<text id='fieldForBtnFive__svgText7' symb='22' x="60" y="125">loremipsumdolorsit</text>
+    			<text id='fieldForBtnFive__svgText8' symb='12' x="90" y="145">loremipsumd</text>
+    			<text id='fieldForBtnFive__svgText9' symb='5' x="120" y="165">lorem</text>
+			</svg>
+			<svg id='fieldForBtnFive__svgHidden' class='fieldForBtnFive__svg-hidden' viewBox = "0 0 300 200" version = "1.1">
+    			<path fill='none' stroke="#ED6E46" stroke-width="1" d="m152.5,35c-246,-107 -136.43765,111.61102 -1.53036,140.88232c119.19522,-23.72809 234.53036,-256.88232 1.53036,-140.88232z" />
+			</svg>
+			<input id='fieldFive__input' class='print__field-input-five' value='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at ligula sit amet felis cursus hendrerit. Integer nulla sapien, iaculis ut tincidunt nec, suscipit eget neque. Donec est turpis, consequat in interdum vel, tristique et velit. Morbi eleifend finibus neque id viverra. Proin molestie nunc eget sapien congue pellentesque. Proin non semper tellus, et feugiat magna. Quisque id ullamcorper turpis.'>
+			<input id='fieldFive__submitBtn' class='print__field-submit-btn' type='submit' value='add'>
+		</div>
+
+	</div>
+	<script type="text/javascript" src='print.js'></script>
+	http://d3plus.org/examples/utilities/a39f0c3fc52804ee859a/
+
+</body>
+</html>
