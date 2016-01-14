@@ -300,7 +300,157 @@ fieldThree__text13.onmousedown = function() {
 	fieldThree__prefixSelected = '13';
 }
 
-// field #4
+// field 4
+var fieldFor__input = document.getElementById('fieldFor__input');
+var fieldFor__submitBtn = document.getElementById('fieldFor__submitBtn');
+var fieldForBtnFor__svg = document.getElementById('fieldForBtnFor__svg');
+var fieldForBtnFor__text = document.getElementById('fieldForBtnFor__text');
+
+var svgH = [ 0,-3, 1,-3, 1,-1, 2,-1, 2,-3, 3,-3, 3,0,  3,3, 2,3, 2,1, 1,1, 1,3, 0,3 ];
+
+fieldFor__submitBtn.onclick = function() {
+	var str = '';
+	var letterCoord;
+	var count = 0;
+	var topVal = 5;
+
+
+	var strLetterNo = 0;	
+	var topBottomCount = 0;
+	var top = false;
+
+	for (var a = 0; a < fieldFor__input.value.length; a++) {
+		letterCoord = a * 35;
+		for (var i = 0; i < svgH.length; i++) {
+			if (count == 0) {
+				str = str + (letterCoord + svgH[i] * 10) + ',';
+				count = 1;
+
+				if ( top == false ) {
+					if (svgH[i] == 0) {
+						topVal = topBottomCount + 5;
+					}
+					else if (svgH[i] == 1) {
+						topVal = topBottomCount + 5.2;
+					}
+					else if (svgH[i] == 2) {
+						topVal = topBottomCount + 5.4;
+					}
+					else {
+						topVal = topBottomCount + 5.6;	
+					}
+				}
+				else if (top == true) {
+					if (svgH[i] == 0) {
+						topVal = topBottomCount + 4.6;
+					}
+					else if (svgH[i] == 1) {
+						topVal = topBottomCount + 4.4;
+					}
+					else if (svgH[i] == 2) {
+						topVal = topBottomCount + 4.2;
+					}
+					else {
+						topVal = topBottomCount + 4;	
+					}
+				}
+			}
+			else {	
+				str = str + (svgH[i] * topVal) + ' ';
+				count = 0;
+				topVal = 5;	
+			} 					
+		};
+
+
+		if (top == true) {
+			topBottomCount--;
+			if (topBottomCount == 0) {
+				top = false;
+			};
+		}
+		else {
+			topBottomCount++;
+			if (topBottomCount == 2) {
+				top = true;
+			};
+		}
+
+		str = str + ' M';
+	};	
+
+	console.log(str);
+	fieldForBtnFor__text.setAttribute('d', 'M' + str + 'z' );
+
+	
+	
+
+	/*var str = '';
+	var counter = 0;
+	for (var i = 0; i < 3; i++) {
+		switch ( fieldFor__input.value[i] ) {
+			case 'H':
+			case 'h':
+				if (counter == 0) {
+					str = str + 'M0,0 0,-30 10,-33 10,-22 20,-24 20,-36 30,-39 30,0 20,0 20,-12 10,-11 10,0';
+					fieldForBtnFor__text.setAttribute('d', str + 'z' );
+					console.log( str );
+				}
+				else if (counter == 1) {
+					str = str + ' M35,0 35,-39 45,-39 45,-26 55,-26 55,-39 65,-39 65,0 55,0 55,-13 45,-13 45,0';
+					fieldForBtnFor__text.setAttribute('d', str + 'z' );
+					console.log( str + 'z');
+				}
+				else {
+					str = str + ' M70,0 70,-39 80,-36 80,-24 90,-22 90,-33 100,-30 100,0 90,0 90,-11 80,-12 80,0';
+					fieldForBtnFor__text.setAttribute('d', str + 'z' );
+					console.log( str + 'z');
+				}
+				break;
+			case 'Z':
+			case 'z':
+				if (counter == 0) {
+					str = str + 'M0,0 0,-10 15,-24 0,-20 0,-30 30,-39 30,-26 15,-12 30,-13 30,0 ';
+					fieldForBtnFor__text.setAttribute('d', str + 'z' );
+					console.log( str );
+				}
+				else if (counter == 1) {
+					str = str + ' M35,0 35,-13 50,-26 35,-26 35,-39 65,-39 65,-26 50,-13 65,-13 65,0';
+					fieldForBtnFor__text.setAttribute('d', str + 'z' );
+					console.log( str + 'z');
+				}
+				else {
+					str = str + ' M70,0 70,-13 85,-24 70,-26 70,-39 100,-30 100,-20 85,-12 100,-10 100,0';
+					fieldForBtnFor__text.setAttribute('d', str + 'z' );
+					console.log( str + 'z');
+				}
+				break;
+			case 'T':
+			case 't':
+				if (counter == 0) {
+					str = str + 'M10,0 10,-22 0,-20 0,-30 30,-39 30,-26 20,-24 20,0 ';
+					fieldForBtnFor__text.setAttribute('d', str + 'z' );
+					console.log( str );
+				}
+				else if (counter == 1) {
+					str = str + ' M45,0 45,-26 35,-26 35,-39 65,-39 65,-26 55,-26 55,0 ';
+					fieldForBtnFor__text.setAttribute('d', str + 'z' );
+					console.log( str + 'z');
+				}
+				else {
+					str = str + ' M80,0 80,-24 70,-26 70,-39 100,-30 100,-20 90,-22 90,0 ';
+					fieldForBtnFor__text.setAttribute('d', str + 'z' );
+					console.log( str + 'z');
+				}
+				break;
+
+		}
+		counter++;
+		if (counter > 3) counter = 0;
+	};*/
+}
+
+// field #5
 var fieldFive__submitBtn = document.getElementById('fieldFive__submitBtn');
 var fieldFive__input = document.getElementById('fieldFive__input');
 var fieldForBtnFive__svgShown = document.getElementById('fieldForBtnFive__svgShown');
@@ -315,11 +465,8 @@ fieldFive__submitBtn.onclick = function() {
 		if ( fieldForBtnFive__svgShown.childNodes[i].tagName == 'text') {
 			simbAttrLenght = +fieldForBtnFive__svgShown.childNodes[i].getAttribute('symb');
 			spaceNum = fieldFive__input.value.lastIndexOf( ' ', numStr + simbAttrLenght);
-			//console.log( 'simbAttrLenght: ' + simbAttrLenght + ' spaceNum: ' + spaceNum + " fieldFive__input.value.lastIndexOf( ' '," + spaceNum + " );" );
-			
+		
 			fieldForBtnFive__svgShown.childNodes[i].innerHTML = fieldFive__input.value.substring(numStr, spaceNum);
-			//console.log( "fieldFive__input.value.substring(" + numStr + "," + spaceNum + ")" );
-			//console.log( fieldFive__input.value.substring(numStr, spaceNum) );
 
 			numStr = spaceNum;	
 			
