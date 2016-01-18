@@ -1,3 +1,3 @@
-**nothing here bitch!**
+**nothing here!**
 
-this shit needs to refactoring!
+this code needs refactoring!
