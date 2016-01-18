@@ -306,21 +306,110 @@ var fieldFor__submitBtn = document.getElementById('fieldFor__submitBtn');
 var fieldForBtnFor__svg = document.getElementById('fieldForBtnFor__svg');
 var fieldForBtnFor__text = document.getElementById('fieldForBtnFor__text');
 
-var svgH = [ 0,-3, 1,-3, 1,-1, 2,-1, 2,-3, 3,-3, 3,0,  3,3, 2,3, 2,1, 1,1, 1,3, 0,3 ];
+var svgH = [ 0,-3, 1,-3, 1,-1, 2,-1, 2,-3, 3,-3, 3,0, 3,3, 2,3, 2,1, 1,1, 1,3, 0,3 ];
 
 fieldFor__submitBtn.onclick = function() {
+	var arrCount = 0;
 	var str = '';
-	var letterCoord;
-	var count = 0;
+	var letterCoord = 0;
+	var topOrBottom = true;
+	var topOrBottomCount = 0;
 	var topVal = 5;
 
+	// исходя из количества букв в инпуте узнаем "меру" длины для буквы
+	var totalLenghtForLetters = 200;
+	var minLetterLenght = ( totalLenghtForLetters / fieldFor__input.value.length ) / 3;
+	console.log( minLetterLenght );
 
-	var strLetterNo = 0;	
-	var topBottomCount = 0;
-	var top = false;
 
+	for ( var a = 0; a < fieldFor__input.value.length; a++ ) {
+		// находим координаты, что бы следующую букву разместить после предыдущей 
+		letterCoord = a * minLetterLenght * 3;
+
+		// зная "меру", добавляем букву
+		for ( var i = 0; i < svgH.length; i++ ) {
+
+			// выравниваем точку по горизонтали (первая точка из массива)
+			if (arrCount == 0) {
+				// составляем строку для атрибута "d" 
+				str = str + ( letterCoord + a + svgH[i] * minLetterLenght ) + ',';
+				arrCount = 1;
+
+				// 
+				if ( topOrBottom ) {
+					if (svgH[i] == 0) {
+						topVal = topVal + topOrBottomCount - 1;
+					}
+					else if (svgH[i] == 1) {
+						topVal = topVal + topOrBottomCount - 0.66;
+					}
+					else if (svgH[i] == 2) {
+						topVal = topVal + topOrBottomCount - 0.33;
+					}
+					else {
+						topVal = topVal + topOrBottomCount;	
+					}
+					
+				}
+				else {
+					if (svgH[i] == 0) {
+						topVal = topVal + topOrBottomCount - 1;
+					}
+					else if (svgH[i] == 1) {
+						topVal = topVal + topOrBottomCount - 1.66;
+					}
+					else if (svgH[i] == 2) {
+						topVal = topVal + topOrBottomCount - 1.66;
+					}
+					else {
+						topVal = topVal + topOrBottomCount - 2;	
+					}
+				}
+			}
+
+			// выравниваем точку по вертикали (вторая точка из массива)
+			else {
+				str = str + ( svgH[i] * topVal ) + ' ';
+				arrCount = 0;
+				topVal = 5;
+			}
+
+		};
+
+		str = str + ' M';
+
+
+		if ( topOrBottom == true ) {
+			topOrBottomCount++;
+			if ( fieldFor__input.value.length / 2 < topOrBottomCount) {
+				topOrBottom = false;
+			};
+			console.log( );
+		}
+		else {
+			topOrBottomCount--;
+			if (topOrBottomCount == 0) {
+				topOrBottom = true;
+			};
+
+		}
+
+	};	
+
+	console.log(str);
+	fieldForBtnFor__text.setAttribute('d', 'M' + str + 'z' );
+
+
+	/*
+	var str = '';
+	var count = 0;
+	var topVal = 5;
+	var topOrBottomCount = 0;
+
+
+	// рисуем букву
 	for (var a = 0; a < fieldFor__input.value.length; a++) {
-		letterCoord = a * 35;
+		letterCoord = a * minLetterLenght;
 		for (var i = 0; i < svgH.length; i++) {
 			if (count == 0) {
 				str = str + (letterCoord + svgH[i] * 10) + ',';
@@ -328,30 +417,30 @@ fieldFor__submitBtn.onclick = function() {
 
 				if ( top == false ) {
 					if (svgH[i] == 0) {
-						topVal = topBottomCount + 5;
+						topVal = topOrBottomCount + 5;
 					}
 					else if (svgH[i] == 1) {
-						topVal = topBottomCount + 5.2;
+						topVal = topOrBottomCount + 5.2;
 					}
 					else if (svgH[i] == 2) {
-						topVal = topBottomCount + 5.4;
+						topVal = topOrBottomCount + 5.4;
 					}
 					else {
-						topVal = topBottomCount + 5.6;	
+						topVal = topOrBottomCount + 5.6;	
 					}
 				}
 				else if (top == true) {
 					if (svgH[i] == 0) {
-						topVal = topBottomCount + 4.6;
+						topVal = topOrBottomCount + 4.6;
 					}
 					else if (svgH[i] == 1) {
-						topVal = topBottomCount + 4.4;
+						topVal = topOrBottomCount + 4.4;
 					}
 					else if (svgH[i] == 2) {
-						topVal = topBottomCount + 4.2;
+						topVal = topOrBottomCount + 4.2;
 					}
 					else {
-						topVal = topBottomCount + 4;	
+						topVal = topOrBottomCount + 4;	
 					}
 				}
 			}
@@ -364,14 +453,14 @@ fieldFor__submitBtn.onclick = function() {
 
 
 		if (top == true) {
-			topBottomCount--;
-			if (topBottomCount == 0) {
+			topOrBottomCount--;
+			if (topOrBottomCount == 0) {
 				top = false;
 			};
 		}
 		else {
-			topBottomCount++;
-			if (topBottomCount == 2) {
+			topOrBottomCount++;
+			if (topOrBottomCount == 2) {
 				top = true;
 			};
 		}
@@ -381,73 +470,8 @@ fieldFor__submitBtn.onclick = function() {
 
 	console.log(str);
 	fieldForBtnFor__text.setAttribute('d', 'M' + str + 'z' );
+	*/
 
-	
-	
-
-	/*var str = '';
-	var counter = 0;
-	for (var i = 0; i < 3; i++) {
-		switch ( fieldFor__input.value[i] ) {
-			case 'H':
-			case 'h':
-				if (counter == 0) {
-					str = str + 'M0,0 0,-30 10,-33 10,-22 20,-24 20,-36 30,-39 30,0 20,0 20,-12 10,-11 10,0';
-					fieldForBtnFor__text.setAttribute('d', str + 'z' );
-					console.log( str );
-				}
-				else if (counter == 1) {
-					str = str + ' M35,0 35,-39 45,-39 45,-26 55,-26 55,-39 65,-39 65,0 55,0 55,-13 45,-13 45,0';
-					fieldForBtnFor__text.setAttribute('d', str + 'z' );
-					console.log( str + 'z');
-				}
-				else {
-					str = str + ' M70,0 70,-39 80,-36 80,-24 90,-22 90,-33 100,-30 100,0 90,0 90,-11 80,-12 80,0';
-					fieldForBtnFor__text.setAttribute('d', str + 'z' );
-					console.log( str + 'z');
-				}
-				break;
-			case 'Z':
-			case 'z':
-				if (counter == 0) {
-					str = str + 'M0,0 0,-10 15,-24 0,-20 0,-30 30,-39 30,-26 15,-12 30,-13 30,0 ';
-					fieldForBtnFor__text.setAttribute('d', str + 'z' );
-					console.log( str );
-				}
-				else if (counter == 1) {
-					str = str + ' M35,0 35,-13 50,-26 35,-26 35,-39 65,-39 65,-26 50,-13 65,-13 65,0';
-					fieldForBtnFor__text.setAttribute('d', str + 'z' );
-					console.log( str + 'z');
-				}
-				else {
-					str = str + ' M70,0 70,-13 85,-24 70,-26 70,-39 100,-30 100,-20 85,-12 100,-10 100,0';
-					fieldForBtnFor__text.setAttribute('d', str + 'z' );
-					console.log( str + 'z');
-				}
-				break;
-			case 'T':
-			case 't':
-				if (counter == 0) {
-					str = str + 'M10,0 10,-22 0,-20 0,-30 30,-39 30,-26 20,-24 20,0 ';
-					fieldForBtnFor__text.setAttribute('d', str + 'z' );
-					console.log( str );
-				}
-				else if (counter == 1) {
-					str = str + ' M45,0 45,-26 35,-26 35,-39 65,-39 65,-26 55,-26 55,0 ';
-					fieldForBtnFor__text.setAttribute('d', str + 'z' );
-					console.log( str + 'z');
-				}
-				else {
-					str = str + ' M80,0 80,-24 70,-26 70,-39 100,-30 100,-20 90,-22 90,0 ';
-					fieldForBtnFor__text.setAttribute('d', str + 'z' );
-					console.log( str + 'z');
-				}
-				break;
-
-		}
-		counter++;
-		if (counter > 3) counter = 0;
-	};*/
 }
 
 // field #5
