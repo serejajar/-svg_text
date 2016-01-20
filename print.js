@@ -1,27 +1,25 @@
-// #1 main buttons
-var btnOne = document.getElementById('btnOne');
-btnOne.style.backgroundColor = '#0BB3A5'
-var btnTwo = document.getElementById('btnTwo');
-var btnThree = document.getElementById('btnThree');
-var btnFour = document.getElementById('btnFour');
-var btnFive = document.getElementById('btnFive');
+// #1 MAIN BUTTONS
+var btnArr = document.getElementsByClassName('print__btn');
 
+// change style for 1-st button, now 1-st btn it's btnSelected 
+btnArr[0].style.backgroundColor = '#0BB3A5';
+var btnSelected = btnArr[0];
 
-var btnSelected = btnOne;
-
-var btnArr = [ btnOne, btnTwo, btnThree, btnFour ,btnFive ];
-
+// add onmousedown events for all btn-s
 for ( var i = 0; i < btnArr.length; i++ ) {
 	btnArr[i].onmousedown = function() {
+		// change style for old btnSelected and make THIS elem btnSelected
 		btnSelected.style.backgroundColor = '';
 		this.style.backgroundColor = '#0BB3A5';
 		btnSelected = this;
-		var thisElemNumber = btnArr.indexOf(this);
-		hideAllfields();
+		// find THIS number in node collections  ( [].indexOf.call() it's "indexOf"-bicycle for node collections (getElementsByClassName) )
+		var thisElemNumber = [].indexOf.call(btnArr, btnSelected);
+		// hide allfields and show field equal THIS elem
+		hideAllfields(); 
 		fieldForBtnArr[thisElemNumber].style.display = 'block';
-
 	};
 };
+
 
 // #2 fields for main btn
 var fieldForBtnOne = document.getElementById('fieldForBtnOne');
@@ -381,7 +379,7 @@ fieldFor__submitBtn.onclick = function() {
 
 		if ( topOrBottom == true ) {
 			topOrBottomCount++;
-			if ( fieldFor__input.value.length / 2 < topOrBottomCount) {
+			if ( fieldFor__input.value.length / 2 <= topOrBottomCount) {
 				topOrBottom = false;
 			};
 			console.log( );

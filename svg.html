@@ -18,10 +18,19 @@
   }
 </style>
 
+
+<div class="class"></div>
+<div class="class"></div>
+<div id='abc1' class="class selected"></div>
+<div class="class"></div>
+
+
 <script type="text/javascript">
-var a = 11;
-if ( a % 2 == 0 ) {
-  console.log( a % 2 );  
-}
+
+ var arr = document.getElementsByClassName('class');
+ var selected = document.getElementById('abc1');
+
+ var selected_id = [].indexOf.call(arr, selected);
+ console.log(selected_id);
 
 </script>
