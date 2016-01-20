@@ -1,9 +1,16 @@
-// #1 MAIN BUTTONS
-var btnArr = document.getElementsByClassName('print__btn');
+// MAIN BUTTONS and FIELDS
 
+// find all btn
+var btnArr = document.getElementsByClassName('print__btn');
 // change style for 1-st button, now 1-st btn it's btnSelected 
 btnArr[0].style.backgroundColor = '#0BB3A5';
 var btnSelected = btnArr[0];
+
+// find all fields
+var fieldForBtnArr = document.getElementsByClassName('print__field');
+// display 1-st field and 'select' 1-st field
+fieldForBtnArr[0].style.display = 'block';
+var fieldSelected = fieldForBtnArr[0];
 
 // add onmousedown events for all btn-s
 for ( var i = 0; i < btnArr.length; i++ ) {
@@ -20,24 +27,16 @@ for ( var i = 0; i < btnArr.length; i++ ) {
 	};
 };
 
-
-// #2 fields for main btn
-var fieldForBtnOne = document.getElementById('fieldForBtnOne');
-fieldForBtnOne.style.display = 'block';
-var fieldForBtnTwo = document.getElementById('fieldForBtnTwo');
-var fieldForBtnThree = document.getElementById('fieldForBtnThree');
-var fieldForBtnFour = document.getElementById('fieldForBtnFour');
-var fieldForBtnFive = document.getElementById('fieldForBtnFive');
-
-var fieldSelected = fieldForBtnOne;
-
-var fieldForBtnArr = [ fieldForBtnOne, fieldForBtnTwo, fieldForBtnThree, fieldForBtnFour, fieldForBtnFive ];
-
+// functions for MAIN BUTTONS and FIELDS
 function hideAllfields() {
 	for ( var i = 0; i < fieldForBtnArr.length; i++ ) {
 		fieldForBtnArr[i].style.display = '';
 	};
 }
+
+// END MAIN BUTTONS and FIELDS
+
+
 
 // #2.1 add-form
 var fieldFirstOutput = document.getElementById('field-first-output');
