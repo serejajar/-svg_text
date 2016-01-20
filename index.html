@@ -8,20 +8,29 @@
 </head>
 <body>
 	<div class='print'>
-		<div id='btnOne' class='print__btn print__btnOne'>1</div>
-		<div id='btnTwo' class='print__btn print__btnTwo'>2</div>
-		<div id='btnThree' class='print__btn print__btnThree'>3</div>
-		<div id='btnFour' class='print__btn print__btnFour'>4</div>
-		<div id='btnFive' class='print__btn print__btnFive'>5</div>
+		<div class='print__btn print__btnOne'>1</div>
+		<div class='print__btn print__btnTwo'>2</div>
+		<div class='print__btn print__btnThree'>3</div>
+		<div class='print__btn print__btnFour'>4</div>
+		<div class='print__btn print__btnFive'>5</div>
 
-		<div id='fieldForBtnOne' class='print__field'>
+		<div class='print__field'>
 			<h4>CURVE TEXT</h4>
-			<!--<canvas id='field-first-canvas' width='' height=''></canvas>-->
-			<div id='field-first-output' class='print__field-output'></div>
-			<input id='field-first-input' class='print__field-input' value='text here'>
-			<input id='field-submit-btn' class='print__field-submit-btn' type='submit' value='add'>
+			<svg viewBox = "0 0 300 200" version = "1.1">
+			    <defs>
+			        <path id='fieldOne__line'  fill="none" stroke="#333333" stroke-width="3" transform="translate(50,50)" d="M10,55 C15,5 100,5 100,55" />
+			    </defs>
+			    <g fill = "navy">
+			        <text >
+			            <textPath id='fieldOne__output' xlink:href="#fieldOne__line" font-size="20" letter-spacing='30px'>Wavy text is the gimmick for many years to come</textPath>
+			        </text>
+			    </g>
+			</svg>
+			<input id='fieldOne__input' class='print__field-input' value='your text here'>
+			<input id='fieldOne__submitBtn' class='print__field-submit-btn' type='submit' value='add'>
 			<br>
 			<br>
+			
 			<input id='field-reverse-checkbox' type='checkbox'>Reverse
 			<input id='field-inside-checkbox' type='checkbox'>Inside 
 			<br>
@@ -65,7 +74,7 @@
 			line height:<input id='fieldTwo__rangeLineHeight' type='range' min='1' max='50'>
 		</div>
 
-		<div id='fieldForBtnThree' class='print__field'>
+		<div class='print__field'>
 			<h4>TEXTFX</h4>
 			<div id='fieldThree__output' class='print__field-output-three'></div>
 			<input id='fieldThree__input' class='print__field-input-three' value='xyz'>
@@ -88,19 +97,19 @@
 			</div>
 		</div>
 
-		<div id='fieldForBtnFour' class='print__field'>
+		<div class='print__field'>
 			<h4>TEXT ART</h4>
 			<svg id='fieldForBtnFor__svg' viewBox = "0 0 300 200" version = "1.1">
     			<!--<path d="M0,0 30,0 30,10 20,10 20,30 10,30 10,10 0,10z" />-->
     			<!--<path d="M0,0 10,0 10,10 20,10 20,0 30,0 30,30 20,30 20,20 10,20 10,30 0,30z"/>-->
     			<!--<path d="M0,0 30,0 30,10 20,20 30,20 30,30 0,30 0,20 10,10 0,10z"/>-->
-    			<path transform="translate(10,50)" id='fieldForBtnFor__text' d="M0,0 10,0 10,10 20,10 20,0 30,0 30,30 20,30 20,20 10,20 10,30 0,30z"/>
+    			<path id='fieldForBtnFor__text' transform="translate(10,50)" d="M0,0 10,0 10,10 20,10 20,0 30,0 30,30 20,30 20,20 10,20 10,30 0,30z"/>
     		</svg>
     		<input id='fieldFor__input' class='print__field-input-for' value='TZH' pattern="[TtZzHh]{3}" >
 			<input id='fieldFor__submitBtn' class='print__field-submit-btn' type='submit' value='add'>
 		</div>
-		
-		<div id='fieldForBtnFive' class='print__field'>
+
+		<div class='print__field'>
 			<h4>WORD CLOWD</h4>
 			<svg id='fieldForBtnFive__svgShown' viewBox = "0 0 300 200" version = "1.1">
     			<path fill='none' stroke="#ED6E46" stroke-width="1" d="m152.5,35c-246,-107 -136.43765,111.61102 -1.53036,140.88232c119.19522,-23.72809 234.53036,-256.88232 1.53036,-140.88232z" />

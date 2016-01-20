@@ -38,8 +38,20 @@ function hideAllfields() {
 
 
 
-// #2.1 add-form
-var fieldFirstOutput = document.getElementById('field-first-output');
+// CURVE TEXT
+var fieldOne__output = document.getElementById('fieldOne__output');
+var fieldOne__line = document.getElementById('fieldOne__line');
+var fieldOne__input = document.getElementById('fieldOne__input');
+var fieldOne__submitBtn = document.getElementById('fieldOne__submitBtn');
+
+fieldOne__submitBtn.onmousedown = function() {
+	console.log('ok');
+	fieldOne__output.innerHTML = fieldOne__input.value;
+}
+
+
+
+/*var fieldFirstOutput = document.getElementById('field-first-output');
 var fieldFirstInput = document.getElementById('field-first-input');
 var fieldSubmitBtn = document.getElementById('field-submit-btn');
 
@@ -121,7 +133,11 @@ var fieldRangeFontSize = document.getElementById('field-range-fontSize');
 
 fieldRangeFontSize.oninput = function() {
 	fieldFirstOutput.style.fontSize = fieldRangeFontSize.value + 'pt';
-}
+}*/
+
+// END CURVE TEXT
+
+
 
 // 3 field #2
 var fieldTwoLine = document.getElementById('field-two-line');
