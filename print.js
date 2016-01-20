@@ -39,75 +39,53 @@ function hideAllfields() {
 
 
 // CURVE TEXT
+// #1 text input/output user form
 var fieldOne__output = document.getElementById('fieldOne__output');
 var fieldOne__line = document.getElementById('fieldOne__line');
 var fieldOne__input = document.getElementById('fieldOne__input');
 var fieldOne__submitBtn = document.getElementById('fieldOne__submitBtn');
 
+// if user click on submit btn, then add nee next from user input
 fieldOne__submitBtn.onmousedown = function() {
 	console.log('ok');
 	fieldOne__output.innerHTML = fieldOne__input.value;
 }
 
+// #2 reverse checkbox
+var fieldOne__reverseCheckbox = document.getElementById('fieldOne__reverseCheckbox');
 
-
-/*var fieldFirstOutput = document.getElementById('field-first-output');
-var fieldFirstInput = document.getElementById('field-first-input');
-var fieldSubmitBtn = document.getElementById('field-submit-btn');
-
-var fieldFirstOutputElemArr = [];
-
-fieldSubmitBtn.onmousedown = function() {
-	fieldFirstOutput.innerHTML = '';
-	var angle = 310;
-	for ( var i = 0; i < fieldFirstInput.value.length; i++ ) {
-		angle = angle + 10;
-		var div = document.createElement( 'div' );
-		div.className = 'print__field-output-letter';
-		div.innerHTML = fieldFirstInput.value[i];
-		fieldFirstOutput.appendChild( div );
-		div.style.transform = 'rotate(' + angle + 'deg)';
-		fieldFirstOutputElemArr.push( div );
-	};	
-}
-
-// 2.2 reverse checkbox
-var fieldReverseCheckbox = document.getElementById('field-reverse-checkbox');
-
-fieldReverseCheckbox.onchange = function() {
-	if ( fieldReverseCheckbox.checked ) {
-		angle = 130;
+// if user change checkbox when this event works
+fieldOne__reverseCheckbox.onchange = function() {
+	if ( fieldOne__reverseCheckbox.checked ) {
+		fieldOne__line.setAttribute( 'transform', 'translate(50,50) rotate(180 50 50)');
 	}
 	else {
-		angle = 310;
+		fieldOne__line.setAttribute( 'transform', 'translate(50,50) rotate(0 50 50)');
 	}
-	for ( var i = 0; i < fieldFirstOutputElemArr.length; i++ ) {
-		angle = angle + 10;
-		fieldFirstOutputElemArr[i].style.transform = 'rotate(' + angle + 'deg)';
-	};
 }
-// 2.3 inside checkbox
-var fieldInsideCheckbox = document.getElementById('field-inside-checkbox');
 
-fieldInsideCheckbox.onchange = function() {
-	var angle;
-	if ( fieldInsideCheckbox.checked ) {
-		angle = 50;
-		for ( var i = 0; i < fieldFirstOutputElemArr.length; i++ ) {
-			angle = angle - 10;
-			fieldFirstOutputElemArr[i].style.transform = 'scale(-1, 1)';
-			fieldFirstOutputElemArr[i].style.transform = 'rotate(' + angle + 'deg)';
+// #3 inside checkbox
+var fieldOne__insideCheckbox = document.getElementById('fieldOne__insideCheckbox');
+
+fieldOne__insideCheckbox.onchange = function() {
+	if ( fieldOne__insideCheckbox.checked ) {
+		// change user string from 'text here' to 'ereh txet'
+		var str = fieldOne__input.value;
+		var reverseStr = '';
+		for (var i = fieldOne__input.value.length - 1; i >= 0; i--) {
+			reverseStr = reverseStr + str[i];
 		};
+		fieldOne__output.innerHTML = reverseStr;
 	}
 	else {
-		angle = 310;
-		for ( var i = 0; i < fieldFirstOutputElemArr.length; i++ ) {
-			angle = angle + 10;
-			fieldFirstOutputElemArr[i].style.transform = 'rotate(' + angle + 'deg)';
-		};
+		fieldOne__output.innerHTML = fieldOne__input.value; 
 	}	
 }
 
+
+
+
+/*
 // 2.4 range "radius"
 var fieldRangeRadius = document.getElementById('field-range-radius');
 
