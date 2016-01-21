@@ -37,13 +37,14 @@ function hideAllfields() {
 // END MAIN BUTTONS and FIELDS
 
 
-
 // CURVE TEXT
 // #1 text input/output user form
+var fieldOne__outputWrap = document.getElementById('fieldOne__outputWrap');
 var fieldOne__output = document.getElementById('fieldOne__output');
 var fieldOne__line = document.getElementById('fieldOne__line');
 var fieldOne__input = document.getElementById('fieldOne__input');
 var fieldOne__submitBtn = document.getElementById('fieldOne__submitBtn');
+
 
 // if user click on submit btn, then add nee next from user input
 fieldOne__submitBtn.onmousedown = function() {
@@ -57,10 +58,10 @@ var fieldOne__reverseCheckbox = document.getElementById('fieldOne__reverseCheckb
 // if user change checkbox when this event works
 fieldOne__reverseCheckbox.onchange = function() {
 	if ( fieldOne__reverseCheckbox.checked ) {
-		fieldOne__line.setAttribute( 'transform', 'translate(50,50) rotate(180 50 50)');
+		fieldOne__line.setAttribute( 'transform', 'rotate(180 150 50)');
 	}
 	else {
-		fieldOne__line.setAttribute( 'transform', 'translate(50,50) rotate(0 50 50)');
+		fieldOne__line.setAttribute( 'transform', 'rotate(0 150 50)');
 	}
 }
 
@@ -78,22 +79,38 @@ fieldOne__insideCheckbox.onchange = function() {
 		fieldOne__output.innerHTML = reverseStr;
 	}
 	else {
+		// add standart ('text here') in fieldOne__output
 		fieldOne__output.innerHTML = fieldOne__input.value; 
 	}	
 }
+
+// #4 range "radius"
+var fieldOne__rangeRadius = document.getElementById('fieldOne__rangeRadius');
+ 
+fieldOne__rangeRadius.oninput = function() {
+	// change attr 'd' for changing coordinates (stretching)
+	fieldOne__line.setAttribute( 'd', 'M100,50 C100,0 ' + fieldOne__rangeRadius.value + ',0 ' + fieldOne__rangeRadius.value + ',50' );
+}
+
+// #5 range "spasing"
+var fieldOne__rangeSpasing = document.getElementById('fieldOne__rangeSpasing');
+
+fieldOne__rangeSpasing.oninput = function() {
+	fieldOne__outputWrap.setAttribute('textLength', fieldOne__rangeSpasing.value )
+}
+
+// #6 range "spasing"
+var fieldRangeSpasing = document.getElementById('field-range-spasing');
+
+fieldRangeSpasing.oninput = function() {
+	
+}
+
 
 
 
 
 /*
-// 2.4 range "radius"
-var fieldRangeRadius = document.getElementById('field-range-radius');
-
-fieldRangeRadius.oninput = function() {
-	for ( var i = 0; i < fieldFirstOutputElemArr.length; i++ ) {
-		fieldFirstOutputElemArr[i].style.height =  fieldRangeRadius.value + 'px';
-	};
-}
 
 // 2.5 range "spasing"
 var fieldRangeSpasing = document.getElementById('field-range-spasing');
@@ -389,80 +406,6 @@ fieldFor__submitBtn.onclick = function() {
 
 	console.log(str);
 	fieldForBtnFor__text.setAttribute('d', 'M' + str + 'z' );
-
-
-	/*
-	var str = '';
-	var count = 0;
-	var topVal = 5;
-	var topOrBottomCount = 0;
-
-
-	// рисуем букву
-	for (var a = 0; a < fieldFor__input.value.length; a++) {
-		letterCoord = a * minLetterLenght;
-		for (var i = 0; i < svgH.length; i++) {
-			if (count == 0) {
-				str = str + (letterCoord + svgH[i] * 10) + ',';
-				count = 1;
-
-				if ( top == false ) {
-					if (svgH[i] == 0) {
-						topVal = topOrBottomCount + 5;
-					}
-					else if (svgH[i] == 1) {
-						topVal = topOrBottomCount + 5.2;
-					}
-					else if (svgH[i] == 2) {
-						topVal = topOrBottomCount + 5.4;
-					}
-					else {
-						topVal = topOrBottomCount + 5.6;	
-					}
-				}
-				else if (top == true) {
-					if (svgH[i] == 0) {
-						topVal = topOrBottomCount + 4.6;
-					}
-					else if (svgH[i] == 1) {
-						topVal = topOrBottomCount + 4.4;
-					}
-					else if (svgH[i] == 2) {
-						topVal = topOrBottomCount + 4.2;
-					}
-					else {
-						topVal = topOrBottomCount + 4;	
-					}
-				}
-			}
-			else {	
-				str = str + (svgH[i] * topVal) + ' ';
-				count = 0;
-				topVal = 5;	
-			} 					
-		};
-
-
-		if (top == true) {
-			topOrBottomCount--;
-			if (topOrBottomCount == 0) {
-				top = false;
-			};
-		}
-		else {
-			topOrBottomCount++;
-			if (topOrBottomCount == 2) {
-				top = true;
-			};
-		}
-
-		str = str + ' M';
-	};	
-
-	console.log(str);
-	fieldForBtnFor__text.setAttribute('d', 'M' + str + 'z' );
-	*/
-
 }
 
 // field #5
