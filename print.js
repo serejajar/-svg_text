@@ -100,36 +100,11 @@ fieldOne__rangeSpasing.oninput = function() {
 }
 
 // #6 range "spasing"
-var fieldRangeSpasing = document.getElementById('field-range-spasing');
+var fieldOne__rangeFontSize = document.getElementById('fieldOne__rangeFontSize');
 
-fieldRangeSpasing.oninput = function() {
-	
+fieldOne__rangeFontSize.oninput = function() {
+	fieldOne__output.setAttribute('font-size', fieldOne__rangeFontSize.value )	
 }
-
-
-
-
-
-/*
-
-// 2.5 range "spasing"
-var fieldRangeSpasing = document.getElementById('field-range-spasing');
-
-fieldRangeSpasing.oninput = function() {
-	var angle = 310;
-	for ( var i = 0; i < fieldFirstOutputElemArr.length; i++ ) {
-		angle = angle + 3 * fieldRangeSpasing.value;
-		fieldFirstOutputElemArr[i].style.transform = 'rotate(' + angle + 'deg)';
-	};
-}
-
-// 2.6 font size
-var fieldRangeFontSize = document.getElementById('field-range-fontSize');
-
-fieldRangeFontSize.oninput = function() {
-	fieldFirstOutput.style.fontSize = fieldRangeFontSize.value + 'pt';
-}*/
-
 // END CURVE TEXT
 
 
