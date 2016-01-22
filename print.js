@@ -118,6 +118,12 @@ var fieldTwo__controlPoints = [
 ];
 fieldTwo__controlsNodeColections = document.getElementsByClassName('print__control');
 
+// making svg elemen whith non-selectable text
+var fieldTwo = document.getElementById('fieldTwo');
+fieldTwo__svgElem.onmousedown = fieldTwo.onselectstart = function() {
+	return false;
+}
+
 for (var i = 0; i < fieldTwo__controlsNodeColections.length; i++) {
 	fieldTwo__controlsNodeColections[i].onmousedown = function( event ) { 
 		var self = this;
@@ -141,28 +147,20 @@ for (var i = 0; i < fieldTwo__controlsNodeColections.length; i++) {
 	  	}
 	}	
 };
-// END TEXT ON PATH
 
-
-
-
-
-// making svg elemen whith non-selectable text
-var fieldTwo = document.getElementById('fieldTwo');
-fieldTwo__svgElem.onmousedown = fieldTwo.onselectstart = function() {
-	return false;
-}
-
-// 3.1 input
-var fieldForBtnTwo__Text = document.getElementById('fieldForBtnTwo__Text');
+// #1 user text on svg elem
+var fieldTwo__text = document.getElementById('fieldTwo__text');
 var fieldTwo__input = document.getElementById('fieldTwo__input');
-
 var fieldTwo__submitBtn = document.getElementById('fieldTwo__submitBtn');
 
 fieldTwo__submitBtn.onmousedown = function() {
-	fieldForBtnTwo__Text.innerHTML = fieldTwo__input.value;
+	fieldTwo__text.innerHTML = fieldTwo__input.value;
 }
 
+// END TEXT ON PATH
+
+
+/* 
 // 3.2 range Font Size
 var fieldTwo__rangeFontSize = document.getElementById('fieldTwo__rangeFontSize');
 
@@ -182,7 +180,7 @@ var fieldTwo__rangeLineHeight = document.getElementById('fieldTwo__rangeLineHeig
 
 fieldTwo__rangeLineHeight.oninput = function() {
 	//fieldForBtnTwo__Text.style.
-}
+}*/
 
 // field #3
 var fieldThree__output = document.getElementById('fieldThree__output');
