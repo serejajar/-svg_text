@@ -107,106 +107,50 @@ fieldOne__rangeFontSize.oninput = function() {
 }
 // END CURVE TEXT
 
+// TEXT ON PATH
+var fieldTwo__line = document.getElementById('fieldTwo__line');
+var fieldTwo__controlPoints = [ 
+	[29,81],
+	[100,21],
+	[84,82], 
+	[230,182],
+	[263,50]
+];
+fieldTwo__controlsNodeColections = document.getElementsByClassName('print__control');
+
+for (var i = 0; i < fieldTwo__controlsNodeColections.length; i++) {
+	fieldTwo__controlsNodeColections[i].onmousedown = function( event ) { 
+		var self = this;
+		document.onmousemove = function( event ) { 
+			// find coord for fieldTwo__line element
+			var coord = fieldTwo__line.getBoundingClientRect();
+			// find this elem position in node collections of control points
+			var thisElemNumberInNodeCollection = [].indexOf.call(fieldTwo__controlsNodeColections, self);
+			// drag and drop this control elem
+			fieldTwo__controlsNodeColections[thisElemNumberInNodeCollection].style.left = (event.pageX - coord.left) + 'px';
+			fieldTwo__controlsNodeColections[thisElemNumberInNodeCollection].style.top = (event.pageY - coord.top) + 'px';
+			// save coordinats of control points in arr fieldTwo__controlPoints			
+			fieldTwo__controlPoints[thisElemNumberInNodeCollection][0] = event.pageX - coord.left;
+			fieldTwo__controlPoints[thisElemNumberInNodeCollection][1] = event.pageY - coord.top;
+			// change coordinates using arr fieldTwo__controlPoints
+			fieldTwo__line.setAttribute( 'd', 'M '+ fieldTwo__controlPoints[0][0] + ',' + fieldTwo__controlPoints[0][1] +' Q ' + fieldTwo__controlPoints[1][0] + ',' + fieldTwo__controlPoints[1][1] + ' ' + fieldTwo__controlPoints[2][0] + ',' + fieldTwo__controlPoints[2][1] + ' Q ' + fieldTwo__controlPoints[3][0] + ',' + fieldTwo__controlPoints[3][1] + ' ' + fieldTwo__controlPoints[4][0] + ',' + fieldTwo__controlPoints[4][1] );
+		}
+		// if mouse up, break this event
+		document.onmouseup = function() {
+	    	document.onmousemove = null;
+	  	}
+	}	
+};
+// END TEXT ON PATH
 
 
-// 3 field #2
-var fieldTwoLine = document.getElementById('field-two-line');
-var fieldTwoControlPoint1 = document.getElementById('field-two-controlPoint1');
-var fieldTwoControlPoint2 = document.getElementById('field-two-controlPoint2');
-var fieldTwoControl1 = document.getElementById('field-two-control1');
-var fieldTwoControl2 = document.getElementById('field-two-control2');
-var fieldTwoControl3 = document.getElementById('field-two-control3');
 
-var controlPoint1Y = 100;
-var controlPoint1X = 21;
 
-var controlPoint2Y = 230;
-var controlPoint2X = 182;
 
-var control1Y = 29;
-var control1X = 81;
-
-var control2Y = 84;
-var control2X = 82;
-
-var control3Y = 263;
-var control3X = 50;
-
-var fieldForBtnTwoSvg = document.getElementById('fieldForBtnTwoSvg');
-
-fieldForBtnTwoSvg.onmousedown = fieldForBtnTwo.onselectstart = function() {
+// making svg elemen whith non-selectable text
+var fieldTwo = document.getElementById('fieldTwo');
+fieldTwo__svgElem.onmousedown = fieldTwo.onselectstart = function() {
 	return false;
-}
-
-
-fieldTwoControlPoint1.onmousedown = function( event ) {
-	document.onmousemove = function( event ) {
-		var coord = fieldTwoLine.getBoundingClientRect();
-		fieldTwoControlPoint1.style.left = (event.pageX - coord.left) + 'px';
-		fieldTwoControlPoint1.style.top = (event.pageY - coord.top) + 'px';
-		controlPoint1Y = event.pageX - coord.left;
-		controlPoint1X = event.pageY - coord.top;
-		fieldTwoLine.setAttribute( 'd', 'M '+ control1Y + ',' + control1X +' Q ' + controlPoint1Y + ',' + controlPoint1X + ' ' + control2Y + ',' + control2X + ' Q ' + controlPoint2Y + ',' + controlPoint2X + ' ' + control3Y + ',' + control3X );
-		console.log( 'd', 'M '+ control1Y + ',' + control1X +' Q ' + controlPoint1Y + ',' + controlPoint1X + ' ' + control2Y + ',' + control2X + ' Q ' + controlPoint2Y + ',' + controlPoint2X + ' ' + control3Y + ',' + control3X );
-	}
-	document.onmouseup = function() {
-    	document.onmousemove = null;
-  	}
-}
-fieldTwoControlPoint2.onmousedown = function(event) {
-	document.onmousemove = function(event) {
-		var coord = fieldTwoLine.getBoundingClientRect();
-		fieldTwoControlPoint2.style.left = (event.pageX - coord.left) + 'px';
-		fieldTwoControlPoint2.style.top = (event.pageY - coord.top) + 'px';
-		controlPoint2Y = event.pageX - coord.left;
-		controlPoint2X = event.pageY - coord.top;
-		fieldTwoLine.setAttribute( 'd', 'M '+ control1Y + ',' + control1X +' Q ' + controlPoint1Y + ',' + controlPoint1X + ' ' + control2Y + ',' + control2X + ' Q ' + controlPoint2Y + ',' + controlPoint2X + ' ' + control3Y + ',' + control3X );	
-	}
-	document.onmouseup = function() {
-    	document.onmousemove = null;
-  	}
-}
-
-fieldTwoControl1.onmousedown = function( event ) {
-	document.onmousemove = function( event ) {
-		var coord = fieldTwoLine.getBoundingClientRect();
-		fieldTwoControl1.style.left = (event.pageX - coord.left) + 'px';
-		fieldTwoControl1.style.top = (event.pageY - coord.top) + 'px';
-		control1Y = event.pageX - coord.left;
-		control1X = event.pageY - coord.top;
-		fieldTwoLine.setAttribute( 'd', 'M '+ control1Y + ',' + control1X +' Q ' + controlPoint1Y + ',' + controlPoint1X + ' ' + control2Y + ',' + control2X + ' Q ' + controlPoint2Y + ',' + controlPoint2X + ' ' + control3Y + ',' + control3X );	
-	}
-	document.onmouseup = function() {
-    	document.onmousemove = null;
-  	}
-}
-
-fieldTwoControl2.onmousedown = function( event ) {
-	document.onmousemove = function( event ) {
-		var coord = fieldTwoLine.getBoundingClientRect();
-		fieldTwoControl2.style.left = (event.pageX - coord.left) + 'px';
-		fieldTwoControl2.style.top = (event.pageY - coord.top) + 'px';
-		control2Y = event.pageX - coord.left;
-		control2X = event.pageY - coord.top;
-		fieldTwoLine.setAttribute( 'd', 'M '+ control1Y + ',' + control1X +' Q ' + controlPoint1Y + ',' + controlPoint1X + ' ' + control2Y + ',' + control2X + ' Q ' + controlPoint2Y + ',' + controlPoint2X + ' ' + control3Y + ',' + control3X );	
-	}
-	document.onmouseup = function() {
-    	document.onmousemove = null;
-  	}
-}
-fieldTwoControl3.onmousedown = function( event ) {
-	document.onmousemove = function( event ) {
-		var coord = fieldTwoLine.getBoundingClientRect();
-		fieldTwoControl3.style.left = (event.pageX - coord.left) + 'px';
-		fieldTwoControl3.style.top = (event.pageY - coord.top) + 'px';
-		control3Y = event.pageX - coord.left;
-		control3X = event.pageY - coord.top;
-		fieldTwoLine.setAttribute( 'd', 'M '+ control1Y + ',' + control1X +' Q ' + controlPoint1Y + ',' + controlPoint1X + ' ' + control2Y + ',' + control2X + ' Q ' + controlPoint2Y + ',' + controlPoint2X + ' ' + control3Y + ',' + control3X );
-		console.log( 'M '+ control1Y + ',' + control1X +' Q ' + controlPoint1Y + ',' + controlPoint1X + ' ' + control2Y + ',' + control2X + ' Q ' + controlPoint2Y + ',' + controlPoint2X + ' ' + control3Y + ',' + control3X );
-	}
-	document.onmouseup = function() {
-    	document.onmousemove = null;
-  	}
 }
 
 // 3.1 input

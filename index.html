@@ -4,7 +4,6 @@
 	<meta charset='utf-8'>
 	<title>SVG TEXT</title>
 	<link rel="stylesheet" href="style.css">
-	<script type="text/javascript" src='libs/fabric.js'></script>
 </head>
 <body>
 	<div class='print'>
@@ -43,27 +42,25 @@
 			Font size:<input id='fieldOne__rangeFontSize' type='range' min='8' max='30'>
 		</div>
 
-		<div id='fieldForBtnTwo' class='print__field'>
+		<div id='fieldTwo' class='print__field'>
 			<h4>TEXT ON PATH</h4>
-			<div id='fieldForBtnTwoSvg' class='print__field-svg-wrapp'>
+			<div id='fieldTwo__svgElem' class='print__field-svg-wrapp'>
 				<svg viewBox = "0 0 300 200" version = "1.1">
 				    <defs>
-				        <!-- Start at (10,90) end at (200,70) use control point (100,15) -->
-				        <!-- Continue from (200,70) end at (400,30) use control point (340,140) -->
-				        <path id = "field-two-line" d = "M 29,81 Q 100,21 84,82 Q 230,182 263,50"/>
+				        <path id = "fieldTwo__line" d = "M 29,81 Q 100,21 84,82 Q 230,182 263,50"/>
 				    </defs>
 				    <g fill = "navy">
 				        <text >
-				            <textPath id='fieldForBtnTwo__Text' xlink:href="#field-two-line" font-size="20" letter-spacing='30px'>Wavy text is the gimmick for many years to come</textPath>
+				            <textPath id='fieldTwo__Text' xlink:href="#fieldTwo__line" font-size="20" letter-spacing='30px'>Wavy text is the gimmick for many years to come</textPath>
 				        </text>
-				        <use x = "0" y = "0" xlink:href = "#field-two-line" stroke = "black" fill = "none"/>
+				        <use x = "0" y = "0" xlink:href = "#fieldTwo__line" stroke = "black" fill = "none"/>
 				    </g>
 				</svg>
-				<div id='field-two-controlPoint1' class='print__field-controlPoint1'></div>
-				<div id='field-two-controlPoint2' class='print__field-controlPoint2'></div>
-				<div id='field-two-control1' class='print__field-control1'></div>
-				<div id='field-two-control2' class='print__field-control2'></div>
-				<div id='field-two-control3' class='print__field-control3'></div>
+				<div id='fieldTwo__control1' class='print__field-control1 print__control'></div>
+				<div id='fieldTwo__controlPoint1' class='print__field-controlPoint1 print__control'></div>
+				<div id='fieldTwo__control2' class='print__field-control2 print__control'></div>
+				<div id='fieldTwo__controlPoint2' class='print__field-controlPoint2 print__control'></div>
+				<div id='fieldTwo__control3' class='print__field-control3 print__control'></div>
 			</div>
 
 			<input id='fieldTwo__input' class='print__field-input-two' value='text here'>
