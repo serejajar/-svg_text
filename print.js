@@ -99,13 +99,15 @@ fieldOne__rangeSpasing.oninput = function() {
 	fieldOne__outputWrap.setAttribute('textLength', fieldOne__rangeSpasing.value )
 }
 
-// #6 range "spasing"
+// #6 range "Font Size"
 var fieldOne__rangeFontSize = document.getElementById('fieldOne__rangeFontSize');
 
 fieldOne__rangeFontSize.oninput = function() {
 	fieldOne__output.setAttribute('font-size', fieldOne__rangeFontSize.value )	
 }
 // END CURVE TEXT
+
+
 
 // TEXT ON PATH
 var fieldTwo__line = document.getElementById('fieldTwo__line');
@@ -157,73 +159,72 @@ fieldTwo__submitBtn.onmousedown = function() {
 	fieldTwo__text.innerHTML = fieldTwo__input.value;
 }
 
-// END TEXT ON PATH
-
-
-/* 
-// 3.2 range Font Size
+// #2 range Font Size
 var fieldTwo__rangeFontSize = document.getElementById('fieldTwo__rangeFontSize');
 
 fieldTwo__rangeFontSize.oninput = function() {
-	fieldForBtnTwo__Text.style.fontSize = fieldTwo__rangeFontSize.value + 'pt';
+	fieldTwo__text.style.fontSize = fieldTwo__rangeFontSize.value + 'pt';
 }
 
-// 3.3 range Kerning
+// #3 range Kerning
 var fieldTwo__rangeKerning = document.getElementById('fieldTwo__rangeKerning');
 
 fieldTwo__rangeKerning.oninput = function() {
-	//fieldForBtnTwo__Text.style.letterSpacing =  fieldTwo__rangeKerning.value + 'px';
+	fieldTwo__text.parentElement.setAttribute('textLength', fieldTwo__rangeKerning.value )
 }
 
-// 3.4 range Font Size
+/* #4 range Line Height
 var fieldTwo__rangeLineHeight = document.getElementById('fieldTwo__rangeLineHeight');
 
 fieldTwo__rangeLineHeight.oninput = function() {
-	//fieldForBtnTwo__Text.style.
+	fieldTwo__line.setAttribute('stroke-width', fieldTwo__rangeLineHeight.value )
 }*/
+// END TEXT ON PATH
 
-// field #3
-var fieldThree__output = document.getElementById('fieldThree__output');
-var fieldThree__input = document.getElementById('fieldThree__input');
-var fieldThree__submitBtn = document.getElementById('fieldThree__submitBtn');
 
-var fieldThree__text11 = document.getElementById('fieldThree__text11');
-var fieldThree__text12 = document.getElementById('fieldThree__text12');
-var fieldThree__text13 = document.getElementById('fieldThree__text13');
-
-var fieldThree__textSelected = fieldThree__text11;
+// TEXTFX
+// search all elem-s with text patterns
+var fieldThree__nodeCollection = document.getElementsByClassName('print__textfx');
+// select 1-st text pattern
+var fieldThree__textSelected = fieldThree__nodeCollection[0];
+fieldThree__textSelected.style.backgroundColor = '#E1ECEE';
+// prefix for 1-st elem, later you will see for what we need this prefix
 var fieldThree__prefixSelected = '11';
 
+for (var i = 0; i < fieldThree__nodeCollection.length; i++) {
+	// give event on all elem with node collection
+	fieldThree__nodeCollection[i].onmousedown = function() {
+		// make selected text pattern normal
+		fieldThree__textSelected.style.backgroundColor = 'white';
+		this.style.backgroundColor = '#E1ECEE';
+		// select this text pattern, and save prefix
+		fieldThree__textSelected = this;
+		var posInNodeCollections = [].indexOf.call(fieldThree__nodeCollection, this)
+		fieldThree__prefixSelected = 10 + ( posInNodeCollections + 1 );
+	}
+};
+// add new text using selected text pattern 
+var fieldThree__input = document.getElementById('fieldThree__input');
+var fieldThree__output = document.getElementById('fieldThree__output');
+var fieldThree__submitBtn = document.getElementById('fieldThree__submitBtn');
+
 fieldThree__submitBtn.onmousedown = function() {
+	// remove all old text from output elem
 	fieldThree__output.innerHTML = '';
-	for (var i = 0; i < fieldThree__input.value.length; i++) {
+	// add new img elem with attribute src='img/11_z.svg' (11 = prefix, z = letter from fieldThree__input.value )
+	for ( var i = 0; i < fieldThree__input.value.length; i++ ) {
 		var path = 'img/' + fieldThree__prefixSelected + '_' + fieldThree__input.value[i]  + '.svg';
 		var img = document.createElement('img');
 		img.setAttribute('src', path );
 		img.style.maxHeight = '50px';
 		fieldThree__output.appendChild(img);
-		//console.log( 'img/' + fieldThree__prefixSelected + '_' + fieldThree__input.value[i]  + '.svg' );
 	};
 }
+// END TEXTFX
 
-fieldThree__text11.onmousedown = function() {
-	fieldThree__textSelected.style.backgroundColor = 'white';
-	this.style.backgroundColor = '#E1ECEE';
-	fieldThree__textSelected = this;
-	fieldThree__prefixSelected = '11';
-}
-fieldThree__text12.onmousedown = function() {
-	fieldThree__textSelected.style.backgroundColor = 'white';
-	this.style.backgroundColor = '#E1ECEE';
-	fieldThree__textSelected = this;
-	fieldThree__prefixSelected = '12';
-}
-fieldThree__text13.onmousedown = function() {
-	fieldThree__textSelected.style.backgroundColor = 'white';
-	this.style.backgroundColor = '#E1ECEE';
-	fieldThree__textSelected = this;
-	fieldThree__prefixSelected = '13';
-}
+
+
+
 
 // field 4
 var fieldFor__input = document.getElementById('fieldFor__input');
