@@ -222,10 +222,6 @@ fieldThree__submitBtn.onmousedown = function() {
 }
 // END TEXTFX
 
-
-
-
-
 // field 4
 var fieldFor__input = document.getElementById('fieldFor__input');
 var fieldFor__submitBtn = document.getElementById('fieldFor__submitBtn');
@@ -247,20 +243,16 @@ fieldFor__submitBtn.onclick = function() {
 	var minLetterLenght = ( totalLenghtForLetters / fieldFor__input.value.length ) / 3;
 	console.log( minLetterLenght );
 
-
 	for ( var a = 0; a < fieldFor__input.value.length; a++ ) {
 		// находим координаты, что бы следующую букву разместить после предыдущей 
 		letterCoord = a * minLetterLenght * 3;
-
 		// зная "меру", добавляем букву
 		for ( var i = 0; i < svgH.length; i++ ) {
-
 			// выравниваем точку по горизонтали (первая точка из массива)
 			if (arrCount == 0) {
 				// составляем строку для атрибута "d" 
 				str = str + ( letterCoord + a + svgH[i] * minLetterLenght ) + ',';
 				arrCount = 1;
-
 				// 
 				if ( topOrBottom ) {
 					if (svgH[i] == 0) {
@@ -292,18 +284,14 @@ fieldFor__submitBtn.onclick = function() {
 					}
 				}
 			}
-
 			// выравниваем точку по вертикали (вторая точка из массива)
 			else {
 				str = str + ( svgH[i] * topVal ) + ' ';
 				arrCount = 0;
 				topVal = 5;
 			}
-
 		};
-
 		str = str + ' M';
-
 
 		if ( topOrBottom == true ) {
 			topOrBottomCount++;
@@ -317,35 +305,35 @@ fieldFor__submitBtn.onclick = function() {
 			if (topOrBottomCount == 0) {
 				topOrBottom = true;
 			};
-
 		}
-
 	};	
-
 	console.log(str);
 	fieldForBtnFor__text.setAttribute('d', 'M' + str + 'z' );
 }
 
-// field #5
-var fieldFive__submitBtn = document.getElementById('fieldFive__submitBtn');
+// WORD CLOWD
 var fieldFive__input = document.getElementById('fieldFive__input');
-var fieldForBtnFive__svgShown = document.getElementById('fieldForBtnFive__svgShown');
-var fieldFive__inputArr = [];
-//var fieldForBtnFive__svgHidden = document.getElementById('fieldForBtnFive__svgHidden');
+var fieldFive__output = document.getElementById('fieldFive__output');
+var fieldFive__submitBtn = document.getElementById('fieldFive__submitBtn');
+// var fieldFive__inputArr = [];
 
 fieldFive__submitBtn.onclick = function() {
 	var numStr = 0;
 	var simbAttrLenght;
 	var spaceNum;
-	for ( var i = 0; i < fieldForBtnFive__svgShown.childNodes.length; i++ ) {
-		if ( fieldForBtnFive__svgShown.childNodes[i].tagName == 'text') {
-			simbAttrLenght = +fieldForBtnFive__svgShown.childNodes[i].getAttribute('symb');
-			spaceNum = fieldFive__input.value.lastIndexOf( ' ', numStr + simbAttrLenght);
-		
-			fieldForBtnFive__svgShown.childNodes[i].innerHTML = fieldFive__input.value.substring(numStr, spaceNum);
 
-			numStr = spaceNum;	
-			
+	for ( var i = 0; i < fieldFive__output.childNodes.length; i++ ) {
+		if ( fieldFive__output.childNodes[i].tagName == 'text') {
+			// simbAttrLenght is number of letters that can enter in the text elem (svg). Type of value simbAttrLenght is string, +simbAttrLenght change str to num. 
+			simbAttrLenght = +fieldFive__output.childNodes[i].getAttribute('symb');
+			// find space symbol before simbAttrLenght. This need for that the text did not go abroad
+			spaceNum = fieldFive__input.value.lastIndexOf( ' ', numStr + simbAttrLenght);
+			// add part of text from fieldFive__input.value
+			fieldFive__output.childNodes[i].innerHTML = fieldFive__input.value.substring(numStr, spaceNum);
+			// save space position 
+			numStr = spaceNum;				
 		};	
     }
 }
+// END WORD CLOWD
+
