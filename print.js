@@ -222,7 +222,7 @@ fieldThree__submitBtn.onmousedown = function() {
 }
 // END TEXTFX
 
-// field 4
+// TEXT ART 
 var fieldFor__input = document.getElementById('fieldFor__input');
 var fieldFor__submitBtn = document.getElementById('fieldFor__submitBtn');
 var fieldForBtnFor__svg = document.getElementById('fieldForBtnFor__svg');
@@ -238,19 +238,19 @@ fieldFor__submitBtn.onclick = function() {
 	var topOrBottomCount = 0;
 	var topVal = 5;
 
-	// исходя из количества букв в инпуте узнаем "меру" длины для буквы
+	// based on the number of letters in the INPUT learn "measure" for the length of the letters
 	var totalLenghtForLetters = 200;
 	var minLetterLenght = ( totalLenghtForLetters / fieldFor__input.value.length ) / 3;
 	console.log( minLetterLenght );
 
 	for ( var a = 0; a < fieldFor__input.value.length; a++ ) {
-		// находим координаты, что бы следующую букву разместить после предыдущей 
+		// we find the coordinates for post the next letter after the previous  
 		letterCoord = a * minLetterLenght * 3;
-		// зная "меру", добавляем букву
+		// knowing "measure," adds the letter
 		for ( var i = 0; i < svgH.length; i++ ) {
-			// выравниваем точку по горизонтали (первая точка из массива)
+			// align the point horizontally (the first point of the array)
 			if (arrCount == 0) {
-				// составляем строку для атрибута "d" 
+				// draw up a string attribute "in"
 				str = str + ( letterCoord + a + svgH[i] * minLetterLenght ) + ',';
 				arrCount = 1;
 				// 
@@ -266,8 +266,7 @@ fieldFor__submitBtn.onclick = function() {
 					}
 					else {
 						topVal = topVal + topOrBottomCount;	
-					}
-					
+					}					
 				}
 				else {
 					if (svgH[i] == 0) {
@@ -284,7 +283,7 @@ fieldFor__submitBtn.onclick = function() {
 					}
 				}
 			}
-			// выравниваем точку по вертикали (вторая точка из массива)
+			// align the point vertically (the second point of the array)
 			else {
 				str = str + ( svgH[i] * topVal ) + ' ';
 				arrCount = 0;
@@ -310,6 +309,7 @@ fieldFor__submitBtn.onclick = function() {
 	console.log(str);
 	fieldForBtnFor__text.setAttribute('d', 'M' + str + 'z' );
 }
+// END TEXT ART
 
 // WORD CLOWD
 var fieldFive__input = document.getElementById('fieldFive__input');
@@ -336,4 +336,3 @@ fieldFive__submitBtn.onclick = function() {
     }
 }
 // END WORD CLOWD
-
